@@ -5,9 +5,9 @@ pipeline{
             steps{
                 echo "Building stage ..."
                 withCredentials([usernamePassword(credentialsId:'pro8645mgs',passwordVariable:'PASSWORD',usernameVariable:'USERNAME')])
-                sh 'docker build -t pro8645mgs/app_img:1.0 .'
-                sh 'echo $PASSWORD | docer login -u $USERNAME --password-stdin'
-                sh 'docker push pro8645mgs/app_img:1.0'
+                {sh 'docker build -t pro8645mgs/app_img:1.0 .'
+                sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                sh 'docker push pro8645mgs/app_img:1.0'}
             }
         }
         stage('Test'){
